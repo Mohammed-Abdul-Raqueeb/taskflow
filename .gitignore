@@ -1,0 +1,87 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# next.js / build output
+.next/
+out/
+build/
+dist/
+next-env.d.ts
+
+# local databases (PGlite data directories: dev and end-to-end)
+.pglite*/
+*.pglite
+
+# testing artifacts
+coverage/
+screenshots/
+test-results/
+playwright-report/
+blob-report/
+.playwright/
+
+# ---------------------------------------------------------------------------
+# Environment and secrets
+#
+# Everything matching .env* is ignored, then .env.example is allowed back in.
+# A new .env variant added later is therefore ignored by default rather than
+# committed by accident.
+# ---------------------------------------------------------------------------
+.env
+.env.*
+.env.*.local
+!.env.example
+
+# credentials, keys and certificates
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+*.jks
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+*.ppk
+secrets.json
+credentials.json
+.npmrc
+.netrc
+
+# deployment / tooling caches
+.vercel
+.turbo
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# IDE and editor files
+.idea/
+.vscode/
+.vs/
+*.swp
+*.swo
+*~
+*.sublime-workspace
+*.sublime-project
+
+# OS files
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+desktop.ini
+$RECYCLE.BIN/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.log

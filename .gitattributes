@@ -1,0 +1,15 @@
+# Normalise line endings in the repository to LF, while letting each working
+# copy check out whatever its platform prefers. Without this, a clone on
+# Windows and a clone on Linux can show the whole tree as modified.
+* text=auto eol=lf
+
+# Binary assets git should never try to diff or convert.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.pdf binary

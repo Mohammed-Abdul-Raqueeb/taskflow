@@ -1,0 +1,224 @@
+@import 'tailwindcss';
+
+/*
+ * Dark mode is driven by a class on <html>, not by prefers-color-scheme alone,
+ * so an explicit "light" or "dark" choice can override the system setting.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* --------------------------------------------------------------------------
+ * Semantic tokens
+ *
+ * Components only ever reference these names. Both themes redefine the same
+ * set, so nothing has a colour that exists in one theme and not the other.
+ * -------------------------------------------------------------------------- */
+
+:root {
+  --background: oklch(0.985 0.002 250);
+  --surface: oklch(1 0 0);
+  --surface-muted: oklch(0.972 0.003 250);
+  --surface-hover: oklch(0.955 0.005 250);
+
+  --foreground: oklch(0.21 0.02 260);
+  --foreground-muted: oklch(0.5 0.02 258);
+  --foreground-subtle: oklch(0.62 0.017 258);
+
+  --border: oklch(0.9 0.006 258);
+  --border-strong: oklch(0.84 0.008 258);
+
+  --primary: oklch(0.53 0.2 275);
+  --primary-hover: oklch(0.47 0.2 275);
+  --primary-foreground: oklch(0.99 0 0);
+  --primary-soft: oklch(0.95 0.03 275);
+
+  --danger: oklch(0.58 0.22 20);
+  --danger-hover: oklch(0.52 0.22 20);
+  --danger-foreground: oklch(0.99 0 0);
+  --danger-soft: oklch(0.96 0.03 20);
+
+  --success: oklch(0.65 0.16 155);
+  --warning: oklch(0.75 0.16 70);
+
+  --ring: oklch(0.53 0.2 275);
+
+  --radius: 0.625rem;
+}
+
+.dark {
+  --background: oklch(0.17 0.012 265);
+  --surface: oklch(0.213 0.014 265);
+  --surface-muted: oklch(0.25 0.015 265);
+  --surface-hover: oklch(0.285 0.017 265);
+
+  --foreground: oklch(0.96 0.004 260);
+  --foreground-muted: oklch(0.72 0.017 260);
+  --foreground-subtle: oklch(0.6 0.018 260);
+
+  --border: oklch(0.31 0.016 265);
+  --border-strong: oklch(0.4 0.018 265);
+
+  --primary: oklch(0.68 0.16 275);
+  --primary-hover: oklch(0.74 0.15 275);
+  --primary-foreground: oklch(0.16 0.02 275);
+  --primary-soft: oklch(0.3 0.06 275);
+
+  --danger: oklch(0.66 0.19 20);
+  --danger-hover: oklch(0.72 0.18 20);
+  --danger-foreground: oklch(0.16 0.02 20);
+  --danger-soft: oklch(0.3 0.07 20);
+
+  --success: oklch(0.72 0.15 155);
+  --warning: oklch(0.8 0.15 70);
+
+  --ring: oklch(0.68 0.16 275);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-hover: var(--surface-hover);
+
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-foreground-subtle: var(--foreground-subtle);
+
+  --color-border-default: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+
+  --color-danger: var(--danger);
+  --color-danger-hover: var(--danger-hover);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-danger-soft: var(--danger-soft);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+
+  --color-ring: var(--ring);
+
+  --radius-app: var(--radius);
+
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+ * Base
+ * -------------------------------------------------------------------------- */
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* One consistent focus treatment across buttons, links, inputs and controls. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--primary-soft);
+    color: var(--foreground);
+  }
+
+  /* Keep the native controls in step with the active theme. */
+  input,
+  textarea,
+  select {
+    color-scheme: light;
+  }
+
+  .dark input,
+  .dark textarea,
+  .dark select {
+    color-scheme: dark;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-strong) transparent;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * Motion
+ *
+ * Small, purposeful transitions only, and every one of them is dropped for
+ * viewers who have asked for reduced motion.
+ * -------------------------------------------------------------------------- */
+
+@keyframes taskflow-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes taskflow-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes taskflow-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-fade-in {
+  animation: taskflow-fade-in 160ms ease-out;
+}
+
+.animate-scale-in {
+  animation: taskflow-scale-in 140ms ease-out;
+}
+
+.animate-slide-up {
+  animation: taskflow-slide-up 200ms ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
